@@ -1,0 +1,31 @@
+﻿@model MyApp.Models.Cart
+<h1>Detalle de producto</h1>
+<form method="post">
+    <div class="row">
+        <div class="col-4">
+            <img src="@Model.Product.ImageUrl" width="200" height="200"/>
+            <input type="hidden" asp-for="ProductId"/>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                 <label asp-for="Product.Name">Nombre del Producto: @Model.Product.Name</label>
+                <label asp-for="Product.Description">Descripcion del Producto : @Html.Raw(Model.Product.Description)</label>
+                <label asp-for="Product.Description">Precio Producto: @Model.Product.Price.ToString("0.00")</label>
+                <label asp-for="Product.Category.Id">Categoria de Producto: @Model.Product.Category.Name</label>
+                     <div class="form-control">
+                        
+                                <label asp-for="Count"></label>
+                              <input asp-for="Count" class="form-control" />
+                              <span asp-validation-for="Count" class="text-danger"></span>
+                          
+                     </div>
+                      <div class="form-control">
+
+                    <button class="btn btn-success" asp-action="Index" asp-controller="Home">Regresar a la lista</button>
+                    <button type="submit" class="btn btn-dark">Añadir al Carrito</button>
+                     </div>
+            </div>
+          
+        </div>
+    </div>
+</form>

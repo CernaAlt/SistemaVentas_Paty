@@ -1,0 +1,109 @@
+﻿@model MyApp.Models.ViewModels.CartVM
+
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h5 class="mb-0">Detalles de envío</h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- 2 diseño de cuadrícula de columnas con entradas de texto para el nombre y apellido -->
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" asp-for="@Model.OrderHeader.Name" class="form-control" />
+                                    <label class="form-label" for="form7Example1">Nombre</label>
+                                </div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="number" asp-for="@Model.OrderHeader.Phone" class="form-control" />
+                                <label class="form-label" for="form7Example6">Teléfono</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <textarea class="form-control" asp-for="@Model.OrderHeader.Address" rows="4"></textarea>
+                                <label class="form-label" for="form7Example7">Dirección</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" asp-for="@Model.OrderHeader.City" class="form-control" />
+                                <label class="form-label" for="form7Example6">Ciudad</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" asp-for="@Model.OrderHeader.State" class="form-control" />
+                                <label class="form-label" for="form7Example6">Distrito</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" asp-for="@Model.OrderHeader.PostalCode" class="form-control" />
+                                <label class="form-label" for="form7Example6">Codigo Postal</label>
+                            </div>
+                            @* <div class="col">
+                            <div class="form-outline">
+                            <input type="text" id="form7Example2" class="form-control" />
+                            <label class="form-label" for="form7Example2">Last name</label>
+                            </div>
+                            </div>*@
+                        </div>
+
+                        <!-- Text input -->
+                        @*  <div class="form-outline mb-4">
+                        <input type="text" id="form7Example3" class="form-control" />
+                        <label class="form-label" for="form7Example3">Company name</label>
+                        </div>*@
+
+                        <!-- Text input -->
+                        <!-- Email input -->
+                        @*<div class="form-outline mb-4">
+                        <input type="email" id="form7Example5" class="form-control" />
+                        <label class="form-label" for="form7Example5">Email</label>
+                        </div>*@
+
+                        <!-- Number input -->
+                        <!-- Message input -->
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h5 class="mb-0">Resumen</h5>
+                </div>
+
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        @foreach (var details in @Model.ListOfCart)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                <span>@details.Product.Name</span>
+                                <span>cant: @details.Count</span>
+                                <span>@(((details.Product.Price) * (details.Count)).ToString("c"))</span>
+                            </li>
+                        }
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div>
+                                <strong>Cantidad Total</strong>
+                                <strong>
+                                    <p class="mb-0">(incluye IGV)</p>
+                                </strong>
+                            </div>
+                            <span><strong>@Model.OrderHeader.OrderTotal.ToString("c")</strong></span>
+                        </li>
+                    </ul>
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                        Comprar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
